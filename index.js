@@ -91,7 +91,8 @@ module.exports = function stableStringify(obj) {
 
 			/** @type {import('.').Key[]} */
 			// eslint-disable-next-line no-extra-parens
-			var keys = $sort(objectKeys(node), cmp && cmp(/** @type {import('.').NonArrayNode} */ (node)));
+			var keys = cmp ? $sort(objectKeys(node), cmp(/** @type {import('.').NonArrayNode} */ (node))) : $sort(objectKeys(node));
+
 			var out = [];
 			for (var i = 0; i < keys.length; i++) {
 				var key = keys[i];
